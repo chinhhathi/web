@@ -35,7 +35,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/web/company/company_profile.php');
         <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Nhà tuyển dụng</a>
         <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Khác</a>
         <div style="float: right" class="w3-dropdown-hover w3-hide-small">
-            <button class="w3-button w3-teal " title="Notifications">Hà Thị Chinh<i class="fa fa-caret-down"></i></button>
+            <button class="w3-button w3-teal " title="Notifications"> <?php echo $student_profile['first_name']; echo " "; echo $student_profile['sur_name']; echo " "; echo $student_profile['last_name']; ?><i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-card-4 w3-bar-block">
                 <a href="#" class="w3-bar-item w3-button">Hồ sơ sinh viên</a>
                 <a href="#" class="w3-bar-item w3-button">Đăng xuất</a>
@@ -46,7 +46,6 @@ include($_SERVER['DOCUMENT_ROOT'].'/web/company/company_profile.php');
 <?php
 include "card_register_new.php";
 ?>
-
 </body>
 </html>
 
