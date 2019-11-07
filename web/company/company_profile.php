@@ -7,11 +7,14 @@
  */
 
 include($_SERVER['DOCUMENT_ROOT'].'/web/init.php');
-if(isset($_SESSION['organization_id'])) {
-    $organization_id = $_SESSION['organization_id'];
+session_start();
 
-    $sql = "SELECT * FROM `organization` WHERE id = " . $organization_id;
+if(isset($_SESSION['tax_number'])) {
+    $tax_number = $_SESSION['tax_number'];
+
+    $sql = "SELECT * FROM `organization` WHERE tax_number = " . $tax_number;
 
     $query = mysqli_query($conn, $sql);
     $company_profile = mysqli_fetch_assoc($query);
 }
+

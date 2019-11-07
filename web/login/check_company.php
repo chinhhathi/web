@@ -17,13 +17,13 @@ $count = mysqli_num_rows($result);
 
 if ($count==1) {
     $_SESSION['tax_number'] = $id;
+
     header('Location: /web/company/company_home.php');
 }
 else
 {
     $_SESSION["errors"] = "Your Tax is not correct!!! Please re-enter your correct Tax";
     header("location: login.php");
-
 }
 
 ?>

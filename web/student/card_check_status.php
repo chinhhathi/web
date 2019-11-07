@@ -11,7 +11,7 @@ if ($student_register != null) {
 
         foreach ($student_register as $key => $value) {
             if ($key == "status" && ($value == 1 || $value == 2)) {
-                include "card_register_form.php";
+                include "card_register_isset.php";
             }
         }
     }
