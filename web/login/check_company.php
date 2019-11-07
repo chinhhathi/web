@@ -9,14 +9,15 @@ include($_SERVER['DOCUMENT_ROOT'].'/web/init.php');
 session_start();
 $id = $_POST['id_company'];
 
-$sql_company = "SELECT * FROM company WHERE tax_number = ".$id;
+$sql_company = "SELECT * FROM organization WHERE tax_number = ".$id;
 
 
 $result = mysqli_query($conn,$sql_company);
 $count = mysqli_num_rows($result);
+
 if ($count==1) {
     $_SESSION['tax_number'] = $id;
-    header('Location: /web/home/company_home.php');
+    header('Location: /web/company/company_home.php');
 }
 else
 {
