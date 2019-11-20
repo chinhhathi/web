@@ -42,21 +42,41 @@ if (isset($_SESSION['tax_number'])) {
             <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Hồ sơ doanh nghiệp</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Phiếu tuyển dụng</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Danh sách thực tập sinh</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Bảng phân công</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Khác</a>
             <div style="float: right" class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-button w3-teal " title="Notifications">BIDV<i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                <button class="w3-button w3-teal " title="Notifications"><?php echo $company_profile['organization_name'] ?><i class="fa fa-caret-down"></i></button>
+                <div class="w3-dropdown-content w3-card-4 w3-bar-block" >
                     <a href="#" class="w3-bar-item w3-button">Hồ sơ doanh nghiệp</a>
                     <a href="<?php
-                    session_destroy();
-                    header('Locaion: /web/login/login.php');
+                    //session_destroy();
+                    //header('Locaion: /web/login/login.php');
                     ?>" class="w3-bar-item w3-button">Đăng xuất</a>
                 </div>
             </div>
         </div>
     </div>
+    <div class="w3-content w3-padding-top  w3-white w3-margin-bottom w3-margin-top" style="max-width:1200px;">
+        <div class="w3-center w3-card w3-opacity" style="background:#353535 url(https://techtalk.vn/wp-content/uploads/2017/08/PHP-696x392.jpg); height: 150px;"></div>
+        <div class="w3-card w3-padding ">
+            <i class="fa fa-home w3-margin-right"><a href="#" style="text-decoration: none" class="w3-hover-opacity"></i>Trang chủ</a> /
+            <a style="text-decoration: none" class="w3-hover-opacity" href="#">Phiếu yêu cầu</a>
+        </div>
+            <button class="w3-teal w3-padding w3-round-large">Tạo mới Phiếu tuyển dụng</button>
+        <div class="w3-card w3-padding ">
+            <b>Phiếu tuyển dụng của bạn</b>
+            <?php
 
+            var_dump(mysqli_fetch_assoc($query2));die;
+            while($data = mysqli_fetch_assoc($query2)) {
+                echo '<div class="w3-card w3-padding">
+                            <p>'. $data['id'].'</p>
+                        </div>';
+            }
+            ?>
+
+        </div>
+    </div>
     </body>
     </html>
 
