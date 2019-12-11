@@ -58,28 +58,13 @@ if (isset($_SESSION['tax_number'])) {
     </div>
     <div class="w3-content w3-padding-top  w3-white w3-margin-bottom w3-margin-top" style="max-width:1200px;">
         <div class="w3-center w3-card w3-opacity" style="background:#353535 url(https://techtalk.vn/wp-content/uploads/2017/08/PHP-696x392.jpg); height: 150px;"></div>
-        <div class="w3-card w3-padding ">
-            <i class="fa fa-home w3-margin-right"><a href="#" style="text-decoration: none" class="w3-hover-opacity"></i>Trang chủ</a> /
-            <a style="text-decoration: none" class="w3-hover-opacity" href="#">Phiếu yêu cầu</a>
-        </div>
-            <button class="w3-teal w3-padding w3-round-large">Tạo mới Phiếu tuyển dụng</button>
-        <div class="w3-card w3-padding ">
-            <b>Phiếu tuyển dụng của bạn</b>
-            <?php
+        <?php
+            include "company_card.php";
+        ?>
 
-            var_dump(mysqli_fetch_assoc($query2));die;
-            while($data = mysqli_fetch_assoc($query2)) {
-                echo '<div class="w3-card w3-padding">
-                            <p>'. $data['id'].'</p>
-                        </div>';
-            }
-            ?>
-
-        </div>
     </div>
     </body>
     </html>
-
     <?php
 
 }

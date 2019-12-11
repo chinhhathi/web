@@ -12,7 +12,7 @@ $count = mysqli_num_rows($result);
 
 if ($count==1) {
     $_SESSION['professor_code'] = $id;
-    header('Location: /web/home/professor_home.php');
+    header('Location: /web/professor/professor_home.php');
 }
 else
 {
