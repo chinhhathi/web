@@ -13,6 +13,9 @@ if ($student_register != null) {
             if ($key == "status" && ($value == 1 || $value == 2)) {
                 include "card_register_isset.php";
             }
+            if ($key == "status" && ($value == 0)) {
+                include "card_register_list.php";
+            }
         }
     }
     else

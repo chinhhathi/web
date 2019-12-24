@@ -10,6 +10,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/web/init.php');
 
 $id = $_SESSION['id'];
 
+$sql_status = "UPDATE student_register SET status = 0";
+
+$query_status = mysqli_query($conn, $sql_status);
+
+
 $sql = "SELECT * FROM `student_register` WHERE student_id = ".$id;
 
 $query = mysqli_query($conn, $sql);
