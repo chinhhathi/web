@@ -7,13 +7,15 @@
  */
 
 include($_SERVER['DOCUMENT_ROOT'].'/web/init.php');
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
-if(isset($_SESSION['tax_number'])) {
-    $tax_number = $_SESSION['tax_number'];
+$tax_number = $_SESSION['tax_number'];
 
     $sql = "SELECT * FROM `organization` WHERE tax_number = " . $tax_number;
-
+   // var_dump($sql);die;
     $query = mysqli_query($conn, $sql);
     $company_profile = mysqli_fetch_assoc($query);
 
@@ -25,10 +27,11 @@ if(isset($_SESSION['tax_number'])) {
     $query3 = mysqli_query($conn, $sql3);
     $company_abilities_list = mysqli_fetch_assoc($query3);
 
-    $sql4 = "SELECT * FROM `ability_dictionary` WHERE id = ". $company_abilities_list['ability_id'];
+
+
+$sql4 = "SELECT * FROM `ability_dictionary` WHERE id = ". $company_abilities_list['ability_id'];
     $query4 = mysqli_query($conn, $sql4);
     $request_ability = mysqli_fetch_assoc($query4);
-}
 
 
 

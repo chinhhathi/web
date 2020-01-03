@@ -25,6 +25,11 @@ $query_1 = mysqli_query($conn, $list);
 $ability = "SELECT * FROM organization_request_abilities, organization_requests, ability_dictionary WHERE organization_request_abilities.organization_request_id = organization_requests.id AND organization_request_abilities.ability_id=ability_dictionary.id GROUP BY organization_request_abilities.id";
 //organization_request_abilities.organization_request_id,ability_dictionary.ability_name , organization_requests.short_description
 $query_2 = mysqli_query($conn, $ability);
+
+$sql2 = "SELECT * FROM `student_ability`, `ability_dictionary` WHERE student_ability.student_id = ".$_SESSION['id']." AND student_ability.ability_id = ability_dictionary.id";
+
+$query_3 = mysqli_query($conn, $sql2);
+
 ?>
 
 

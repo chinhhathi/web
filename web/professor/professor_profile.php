@@ -39,6 +39,14 @@ if(isset($_SESSION['professor_code'])) {
 
     $query5 = mysqli_query($conn, $sql5);
     $company_profile = mysqli_fetch_assoc($query5);
+
+    $sql6 = "SELECT * FROM `organization` WHERE 1";
+
+    $query6 = mysqli_query($conn, $sql6);
+
+    $sql7 = "SELECT * FROM `student` WHERE 1";
+
+    $query7 = mysqli_query($conn, $sql7);
 }
 
 

@@ -2,23 +2,21 @@
 /**
  * Created by PhpStorm.
  * User: ADMIN
- * Date: 10/16/2019
- * Time: 9:46 PM
+ * Date: 11/4/2019
+ * Time: 8:31 PM
  */
+
+
 include "student_profile.php";
-//include "card_check_isset.php";
-include "change_status.php";
+include "card_check_isset.php";
 include($_SERVER['DOCUMENT_ROOT'].'/web/company/company_profile_student_card.php');
-
-
-
 
 if (isset($_SESSION['student_code'])) {
     ?>
 
     <!DOCTYPE html>
     <html>
-    <title>Phiếu đăng ký</title>
+    <title>Chỉnh sửa hồ sơ sinh viên</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -44,7 +42,7 @@ if (isset($_SESSION['student_code'])) {
         <div class="w3-bar w3-theme-d2 w3-left-align">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2"
                href="javascript:void(0);"><i class="fa fa-bars"></i></a>
-            <a href="student_home.php" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
+            <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
             <a href="profile.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Hồ sơ sinh viên</a>
             <a href="student_home.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Việc làm</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Nhà tuyển dụng</a>
@@ -56,58 +54,63 @@ if (isset($_SESSION['student_code'])) {
                     echo " ";
                     echo $student_profile['last_name']; ?><i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                    <a href="profile.php" class="w3-bar-item w3-button">Hồ sơ sinh viên</a>
+                    <a href="#" class="w3-bar-item w3-button">Hồ sơ sinh viên</a>
                     <a href="logout.php" class="w3-bar-item w3-button">Đăng xuất</a>
                 </div>
             </div>
         </div>
     </div>
+    <form action="edit_profile_sql.php" method="post">
+
     <div class="w3-content w3-padding-top  w3-white w3-margin-bottom w3-margin-top" style="max-width:1200px;">
         <div class="w3-center w3-card w3-opacity" style="background:#353535 url(https://techtalk.vn/wp-content/uploads/2017/08/PHP-696x392.jpg); height: 150px;"></div>
         <div class="w3-card w3-padding">
             <i class="fa fa-home w3-margin-right"><a href="#" style="text-decoration: none" class="w3-hover-opacity"></i>Trang chủ</a> /
-            <a style="text-decoration: none" class="w3-hover-opacity" href="#">Việc làm</a> /
-            <a style="text-decoration: none" class="w3-hover-opacity" href="#">Phiếu đăng ký sinh viên</a>
+            <a style="text-decoration: none" class="w3-hover-opacity" href="profile.php">Hồ sơ sinh viên</a> /
+            <a style="text-decoration: none" class="w3-hover-opacity" href="edit_profile.php">Cập nhật hồ sơ sinh viên</a>
         </div>
-        <div class="w3-col m8 w3-card w3-round-large w3-margin-bottom">
+        <div class="w3-col m12 w3-card w3-round-large w3-margin-bottom">
             <ul class="w3-ul w3-border w3-hover-shadow">
                 <li class="w3-theme">
-                    <p class="w3-large"><h4>PHIẾU ĐĂNG KÝ</h4>
+                    <p class="w3-large"><h4>Cập nhật Hồ sơ sinh viên</h4>
                 </li>
+
                 <li class="w3-padding"><b>Mã sinh viên: </b><?php echo $student_profile['student_code']; ?></li>
-                <li class="w3-padding"><b>Họ và tên: </b> <?php echo $student_profile['first_name']; echo " "; echo $student_profile['sur_name']; echo " "; echo $student_profile['last_name']; ?></li>
-                <li class="w3-padding"><b>Ngày sinh: </b><?php echo $student_profile['date_of_birth'];?></li>
-                <li class="w3-padding"><b>Chuyên ngành: </b><?php echo $student_profile['class_name'];?></li>
-                <li class="w3-padding"><b>Công ty đăng ký: </b><?php echo $company_profile['organization_name'];?></li>
-                <li class="w3-padding"><b>Thời gian đăng ký: </b><?php echo $student_register['submit_date'];?></li>
-                <li class="w3-padding"><b>Trạng thái: </b><?php if($student_register['status']==1) echo "Chờ thực hiện"; if($student_register['status']==2) echo "Đang thực hiện";if($student_register['status']==0) echo "Hoàn thành";?></li>
-                <li class="w3-theme-l5 w3-padding">
-                    <a class="w3-button w3-teal w3-padding-large w3-round-large" href="SCR_1001C.php"><i class="fa fa-check"></i>Hoàn thành</a>
+                <li>
+                    <p><b>Họ:</b></p>
+                    <p><input class="w3-input w3-block w3-round" value="<?php echo $student_profile['first_name'] ?>" name="first_name"></p>
+                </li>
+                <li>
+                    <p><b>Tên đệm:</b></p>
+                    <p><input class="w3-input w3-block w3-round" value="<?php echo $student_profile['sur_name'] ?>" name="sur_name" ></p>
+                </li>
+                <li>
+                    <p><b>Tên:</b></p>
+                    <p><input class="w3-input w3-block w3-round" value="<?php echo $student_profile['last_name'] ?>" name="last_name" ></p>
+                </li>
+                <li>
+                    <p><b>Ngày sinh:</b></p>
+                    <p><input class="w3-input w3-block w3-round" value="<?php echo $student_profile['date_of_birth'] ?>" name="date_of_birth" ></p>
+                </li>
+                <li>
+                    <p><b>Chuyên ngành:</b></p>
+                    <p><input class="w3-input w3-block w3-round" value="<?php echo $student_profile['class_name'] ?>" name="class_name" ></p>
+                </li>
+                <li>
+                    <p><b>Ngày nhập học:</b></p>
+                    <p><input class="w3-input w3-block w3-round" value="<?php echo $student_profile['join_date'] ?>" name="join_date" ></p>
+                </li>
+                <li>
+                    <input type="submit" class="w3-button w3-block w3-round w3-green" name="login" value="Lưu thay đổi">
                 </li>
             </ul>
         </div>
-        <div class="w3-col m4 w3-card w3-margin-bottom w3-round-large">
-            <ul class="w3-ul w3-border w3-hover-shadow">
-                <li class="w3-theme-l2">
-                    <p class="w3-large"><h4>Doanh nghiệp</h4>
-                </li>
-                <li class="w3-padding"><b>Tên doanh nghiệp: </b><?php echo $company_profile['organization_name'];?></li>
-                <li class="w3-padding"><b>Mô tả công việc: </b> <?php echo $organization_request['short_description'];?></li>
-                <li class="w3-padding"><b>Số lượng: </b><?php echo $organization_request['amount'];?></li>
-                <li class="w3-padding"><b>Ngày đăng: </b><?php echo $organization_request['date_submitted'];?></li>
-                <li class="w3-padding"><b>Trạng thái: </b><?php if($organization_request['status']==1) echo "Đang tuyển dụng"; if($organization_request['status']==0) echo "Ngừng tuyển dụng";?></li>
-                <li class="w3-theme-l5 w3-padding" style="height: 73px">
-                </li>
-            </ul>
-
-        </div>
-
     </div>
+    </form>
     </body>
     </html>
 
     <?php
-
 }
 else
     header('Location: /web/login/login.php');

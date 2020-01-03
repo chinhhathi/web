@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Created by PhpStorm.
@@ -15,8 +14,10 @@ $sql_student = "SELECT * FROM student WHERE student_code = ".$id;
 
 $result = mysqli_query($conn,$sql_student);
 $count = mysqli_num_rows($result);
+
     if ($count==1) {
         $_SESSION['student_code'] = $id;
+
         header('Location: /web/student/student_home.php');
     }
     else

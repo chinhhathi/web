@@ -40,9 +40,9 @@ if (isset($_SESSION['student_code'])) {
         <div class="w3-bar w3-theme-d2 w3-left-align">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2"
                href="javascript:void(0);"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Hồ sơ sinh viên</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Việc làm</a>
+            <a href="student_home.php" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
+            <a href="profile.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Hồ sơ sinh viên</a>
+            <a href="student_home.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Việc làm</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Nhà tuyển dụng</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Khác</a>
             <div style="float: right" class="w3-dropdown-hover w3-hide-small">
@@ -52,7 +52,7 @@ if (isset($_SESSION['student_code'])) {
                     echo " ";
                     echo $student_profile['last_name']; ?><i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                    <a href="#" class="w3-bar-item w3-button">Hồ sơ sinh viên</a>
+                    <a href="profile.php" class="w3-bar-item w3-button">Hồ sơ sinh viên</a>
                     <a href="logout.php" class="w3-bar-item w3-button">Đăng xuất</a>
                 </div>
             </div>

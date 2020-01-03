@@ -2,18 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: ADMIN
- * Date: 10/16/2019
- * Time: 9:46 PM
+ * Date: 11/4/2019
+ * Time: 8:31 PM
  */
 
-include('company_profile.php');
 
+include "company_profile.php";
+include($_SERVER['DOCUMENT_ROOT'].'/web/company/company_profile_student_card.php');
 
+if (isset($_SESSION['tax_number'])) {
     ?>
 
     <!DOCTYPE html>
     <html>
-    <title>Sàn giao dịch Thực tập sinh</title>
+    <title>Hồ sơ doanh nghiệp</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -55,11 +57,34 @@ include('company_profile.php');
     </div>
     <div class="w3-content w3-padding-top  w3-white w3-margin-bottom w3-margin-top" style="max-width:1200px;">
         <div class="w3-center w3-card w3-opacity" style="background:#353535 url(https://techtalk.vn/wp-content/uploads/2017/08/PHP-696x392.jpg); height: 150px;"></div>
-        <?php
-            include "company_card.php";
-        ?>
+        <div class="w3-card w3-padding">
+            <i class="fa fa-home w3-margin-right"><a href="#" style="text-decoration: none" class="w3-hover-opacity"></i>Trang chủ</a> /
+            <a style="text-decoration: none" class="w3-hover-opacity" href="student_home.php">Hồ sơ doanh nghiệp</a>
+        </div>
+        <div class="w3-col m12 w3-card w3-round-large w3-margin-bottom">
+            <ul class="w3-ul w3-border w3-hover-shadow">
+                <li class="w3-theme">
+                    <p class="w3-large"><h4>Hồ sơ doanh nghiệp</h4>
+                </li>
+                <li class="w3-padding"><b>Tên doanh nghiệp: </b><?php echo $company_profile['organization_name']; ?></li>
+                <li class="w3-padding"><b>Quy mô: </b> <?php echo $company_profile['employee_count']; ?> nhân viên</li>
+                <li class="w3-padding"><b>Doanh số: </b><?php echo $company_profile['gross_revenue'];?></li>
+                <li class="w3-padding"><b>Địa chỉ: </b><?php echo $company_profile['address'];?></li>
+                <li class="w3-padding"><b>Trang web công ty: </b><?php echo $company_profile['home_page'];?></li>
+                <li class="w3-padding"><b>Mã số thuế: </b><?php echo $company_profile['tax_number'];?></li>
 
+                <li>
+                    <a class="w3-button w3-teal w3-padding w3-round-large" href="company_home.php"><i class="fa fa-check"></i>Trở về</a>
+                    <a class="w3-button w3-teal w3-padding w3-round-large" href="edit_profile.php"><i class="fa fa-check"></i>Chỉnh sửa hồ sơ cá nhân</a>
+                </li>
+            </ul>
+        </div>
     </div>
     </body>
     </html>
 
+    <?php
+}
+else
+    header('Location: /web/login/login.php');
+?>

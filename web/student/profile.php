@@ -2,11 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: ADMIN
- * Date: 10/16/2019
- * Time: 9:46 PM
+ * Date: 11/4/2019
+ * Time: 8:31 PM
  */
+
+
 include "student_profile.php";
-//include "src_1001V_sql.php";
+include "card_check_isset.php";
 include($_SERVER['DOCUMENT_ROOT'].'/web/company/company_profile_student_card.php');
 
 if (isset($_SESSION['student_code'])) {
@@ -14,7 +16,7 @@ if (isset($_SESSION['student_code'])) {
 
 <!DOCTYPE html>
 <html>
-<title>Phiếu đăng ký</title>
+<title>Hồ sơ sinh viên</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -58,41 +60,43 @@ if (isset($_SESSION['student_code'])) {
         </div>
     </div>
 </div>
-<form action="register_card_sql.php" method="post">
 <div class="w3-content w3-padding-top  w3-white w3-margin-bottom w3-margin-top" style="max-width:1200px;">
     <div class="w3-center w3-card w3-opacity" style="background:#353535 url(https://techtalk.vn/wp-content/uploads/2017/08/PHP-696x392.jpg); height: 150px;"></div>
     <div class="w3-card w3-padding">
         <i class="fa fa-home w3-margin-right"><a href="#" style="text-decoration: none" class="w3-hover-opacity"></i>Trang chủ</a> /
-        <a style="text-decoration: none" class="w3-hover-opacity" href="#">Việc làm</a> /
-        <a style="text-decoration: none" class="w3-hover-opacity" href="#">Phiếu tuyển dụng</a>
+        <a style="text-decoration: none" class="w3-hover-opacity" href="student_home.php">Việc làm</a> /
+        <a style="text-decoration: none" class="w3-hover-opacity" href="#">Phiếu đăng ký sinh viên</a>
     </div>
     <div class="w3-col m12 w3-card w3-round-large w3-margin-bottom">
         <ul class="w3-ul w3-border w3-hover-shadow">
             <li class="w3-theme">
-                <p class="w3-large"><h4>PHIẾU TUYỂN DỤNG</h4>
+                <p class="w3-large"><h4>Hồ sơ sinh viên</h4>
             </li>
-            <input type="hidden" id="card_id" name="card_id" value="<?php echo $_SESSION['org_request']['id'];?>">
-            <li class="w3-padding"><b>Tên doanh nghiệp: </b><?php echo $_SESSION['org_pr']['organization_name'];?></li>
-            <li class="w3-padding"><b>Mô tả công việc: </b> <?php echo $_SESSION['org_request']['short_description'];?></li>
-            <li class="w3-padding"><b>Số lượng: </b><?php echo $_SESSION['org_request']['amount'];?></li>
-            <li class="w3-padding"><b>Ngày đăng: </b><?php echo $_SESSION['org_request']['date_submitted'];?></li>
-            <li class="w3-padding"><b>Trạng thái: </b><?php if($_SESSION['org_request']['status']==1) echo "Đang tuyển dụng"; if($_SESSION['org_request']['status']==0) echo "Ngừng tuyển dụng";?></li>
+            <li class="w3-padding"><b>Mã sinh viên: </b><?php echo $student_profile['student_code']; ?></li>
+            <li class="w3-padding"><b>Họ và tên: </b> <?php echo $student_profile['first_name']; echo " "; echo $student_profile['sur_name']; echo " "; echo $student_profile['last_name']; ?></li>
+            <li class="w3-padding"><b>Ngày sinh: </b><?php echo $student_profile['date_of_birth'];?></li>
+            <li class="w3-padding"><b>Chuyên ngành: </b><?php echo $student_profile['class_name'];?></li>
+            <li class="w3-padding"><b>Hồ sơ năng lực: </b></li>
+            <?php
 
-            </li>
-            <li class="w3-theme-l5 w3-padding">
-                <input type="submit" class="w3-button w3-teal w3-padding-large w3-round-large" name="login" value="Đăng ký">
-                <a class="w3-button w3-teal w3-padding-large w3-round-large" href="student_home.php"><i class="fa fa-check"></i>Trở về</a>
+            while ($row = $query_3->fetch_assoc()) {
+
+                ?>
+                <li class="w3-padding"><?php echo $row['ability_name']; ?> - Cấp độ: <?php echo $row['ability_rate']; ?></li>
+
+            <?php } ?>
+            <li>
+                <a class="w3-button w3-teal w3-padding w3-round-large" href="student_home.php"><i class="fa fa-check"></i>Trở về</a>
+                <a class="w3-button w3-teal w3-padding w3-round-large" href="edit_profile.php"><i class="fa fa-check"></i>Chỉnh sửa hồ sơ cá nhân</a>
             </li>
         </ul>
-
     </div>
-
 </div>
-</form>
 </body>
-</html>
+   </html>
+
     <?php
 }
 else
     header('Location: /web/login/login.php');
-?>
+    ?>

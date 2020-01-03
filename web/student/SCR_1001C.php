@@ -45,8 +45,8 @@ if (isset($_SESSION['student_code'])) {
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2"
                href="javascript:void(0);"><i class="fa fa-bars"></i></a>
             <a href="student_home.php" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Hồ sơ sinh viên</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Việc làm</a>
+            <a href="profile.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Hồ sơ sinh viên</a>
+            <a href="student_home.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Việc làm</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Nhà tuyển dụng</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Khác</a>
             <div style="float: right" class="w3-dropdown-hover w3-hide-small">
@@ -56,7 +56,7 @@ if (isset($_SESSION['student_code'])) {
                     echo " ";
                     echo $student_profile['last_name']; ?><i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                    <a href="#" class="w3-bar-item w3-button">Hồ sơ sinh viên</a>
+                    <a href="profile.php" class="w3-bar-item w3-button">Hồ sơ sinh viên</a>
                     <a href="logout.php" class="w3-bar-item w3-button">Đăng xuất</a>
                 </div>
             </div>
@@ -82,7 +82,7 @@ if (isset($_SESSION['student_code'])) {
                 <li class="w3-padding"><b>Thời gian đăng ký: </b><?php echo $student_register['submit_date'];?></li>
                 <li class="w3-padding"><b>Trạng thái: </b><?php if($student_register['status']==1) echo "Chờ thực hiện"; if($student_register['status']==2) echo "Đang thực hiện";if($student_register['status']==0) echo "Hoàn thành";?></li>
                 <li class="w3-theme-l5 w3-padding">
-                    <a class="w3-button w3-teal w3-padding-large w3-round-large" href="SCR_1001A.php"><i class="fa fa-check"></i>Good luck!</a>
+                    <a class="w3-button w3-teal w3-padding-large w3-round-large" href="student_home.php"><i class="fa fa-check"></i>Good luck!</a>
                 </li>
             </ul>
         </div>

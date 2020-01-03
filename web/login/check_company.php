@@ -7,10 +7,10 @@
  */
 include($_SERVER['DOCUMENT_ROOT'].'/web/init.php');
 session_start();
+
 $id = $_POST['id_company'];
 
 $sql_company = "SELECT * FROM organization WHERE tax_number = ".$id;
-
 
 $result = mysqli_query($conn,$sql_company);
 $count = mysqli_num_rows($result);
@@ -25,5 +25,4 @@ else
     $_SESSION["errors"] = "Your Tax is not correct!!! Please re-enter your correct Tax";
     header("location: login.php");
 }
-
 ?>
