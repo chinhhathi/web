@@ -42,7 +42,7 @@ if (isset($_SESSION['professor_code'])) {
             <a href="professor_home.php" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
             <a href="list_company.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Doanh nghiệp</a>
             <a href="list_student.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Sinh viên</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Bảng phân công</a>
+            <a href="src_1003S.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Phân công</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Khác</a>
             <div style="float: right" class="w3-dropdown-hover w3-hide-small">
                 <button class="w3-button w3-teal " title="Notifications"><?php echo $professor_profile['full_name'] ?><i class="fa fa-caret-down"></i></button>

@@ -39,6 +39,8 @@
                             <p><i class="fa fa-fw fa-check"></i> Trạng thái: Còn hiệu lực</p>
                             <?php echo ""?>
                             <a class="w3-button w3-teal w3-padding-large w3-round-large" href="SCR_1002E_sql.php?id=<?php echo $row['id'] ?>"><i class="fa fa-check"></i>Xem chi tiết</a>
+                            <a class="w3-button w3-teal w3-padding-large w3-round-large" href="SCR_1002S.php?id=<?php echo $row['id'] ?>"><i class="fa fa-check"></i>Phân công sinh viên</a>
+
                     </div>
                 </div>
             <?php } ?>

@@ -41,12 +41,23 @@ if(isset($_SESSION['professor_code'])) {
     $company_profile = mysqli_fetch_assoc($query5);
 
     $sql6 = "SELECT * FROM `organization` WHERE 1";
-
     $query6 = mysqli_query($conn, $sql6);
 
     $sql7 = "SELECT * FROM `student` WHERE 1";
-
     $query7 = mysqli_query($conn, $sql7);
+
+    $sql8 = "SELECT * 
+FROM `organization_request_assignment`, `student`
+WHERE organization_request_assignment.student_id = student.id";
+    $query8 = mysqli_query($conn, $sql8);
+
+    $sql9 = "SELECT * FROM `student` WHERE id NOT IN (
+				SELECT student_id
+    			FROM organization_request_assignment
+    			WHERE organization_request_assignment.student_id = student.id
+				)";
+    $query9 = mysqli_query($conn, $sql9);
+
 }
 
 

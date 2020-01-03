@@ -5,10 +5,46 @@
  * Date: 10/16/2019
  * Time: 9:46 PM
  */
-include "professor_profile.php";
+
+include "company_profile.php";
+
 include($_SERVER['DOCUMENT_ROOT'].'/web/company/company_profile_student_card.php');
 
-if (isset($_SESSION['professor_code'])) {
+if (isset($_SESSION['tax_number'])) {
+    $id_request = $_GET['id'];
+    $sql_student = "SELECT * FROM `organization_requests` WHERE id=".$id_request;
+
+    $update = mysqli_query($conn, $sql_student);
+    $org_request = mysqli_fetch_assoc($update);
+    $_SESSION['org_request'] = $org_request;
+//var_dump($_SESSION['org_request']['id']);
+
+    $sql_pr = "SELECT * FROM `organization` where id=".$org_request['organization_id'];
+    $update2 = mysqli_query($conn, $sql_pr);
+    $org_pr = mysqli_fetch_assoc($update2);
+    $_SESSION['org_pr'] = $org_pr;
+//
+//$sql_dic = "SELECT * FROM `organization_request_abilities` WHERE organization_request_id = ".$id_request;
+//$update3 = mysqli_query($conn, $sql_dic);
+//$org_dic = mysqli_fetch_assoc($update3);
+//$_SESSION['org_dic'] = $org_pr;
+//
+////var_dump($sql_dic);die;
+
+    $sql = "SELECT * 
+FROM student
+WHERE id IN (SELECT student_id
+            FROM organization_request_assignment, organization_requests
+            WHERE organization_request_assignment.organization_request_id = organization_requests.id
+         
+            AND organization_requests.organization_id = ".$org_pr['id'].")";
+    $list_student = mysqli_query($conn, $sql);
+    $query =  mysqli_fetch_assoc($list_student);
+
+    $sql2 = "SELECT * FROM `student` WHERE student_code IN ('16001752','00002','00003')";
+    $list_students = mysqli_query($conn, $sql2);
+    $_SESSION['list_stu'] = $list_students;
+
     ?>
 
     <!DOCTYPE html>
@@ -39,14 +75,14 @@ if (isset($_SESSION['professor_code'])) {
         <div class="w3-bar w3-theme-d2 w3-left-align">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2"
                href="javascript:void(0);"><i class="fa fa-bars"></i></a>
-            <a href="professor_home.php" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
-            <a href="list_company.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Doanh nghiệp</a>
-            <a href="list_student.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Sinh viên</a>
-            <a href="src_1003S.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Sinh viên đã phân công</a>
+            <a href="company_profile.php" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Trang chủ</a>
+            <a href="profile.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Hồ sơ doanh nghiệp</a>
+            <a href="company_home.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Phiếu tuyển dụng</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Khác</a>
             <div style="float: right" class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-button w3-teal " title="Notifications"><?php echo $professor_profile['full_name'] ?><i class="fa fa-caret-down"></i></button>
+                <button class="w3-button w3-teal " title="Notifications"><?php echo $company_profile['organization_name'] ?><i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block" >
+                    <a href="#" class="w3-bar-item w3-button">Hồ sơ doanh nghiệp</a>
                     <a href="logout.php" class="w3-bar-item w3-button">Đăng xuất</a>
                 </div>
             </div>
@@ -57,15 +93,15 @@ if (isset($_SESSION['professor_code'])) {
             <div class="w3-center w3-card w3-opacity" style="background:#353535 url(https://techtalk.vn/wp-content/uploads/2017/08/PHP-696x392.jpg); height: 150px;"></div>
             <div class="w3-card w3-padding">
                 <i class="fa fa-home w3-margin-right"><a href="#" style="text-decoration: none" class="w3-hover-opacity"></i>Trang chủ</a> /
-                <a style="text-decoration: none" class="w3-hover-opacity" href="#">Sinh viên</a>
+                <a style="text-decoration: none" class="w3-hover-opacity" href="#">Bảng phân công</a>
             </div>
             <div style="padding-top:1px;">
                 <br>
-                <h3 class="w3-container w3-center"><b>Danh sách sinh viên</b></h3>
+                <h3 class="w3-container w3-center"><b>Danh sách phân công sinh viên</b></h3>
                 <br>
                 <?php
                 // output data of each row
-                while ($row = $query7->fetch_assoc()) {
+                while ($row = $_SESSION['list_stu']->fetch_assoc()) {
 
                     ?>
                     <div class="w3-padding">
@@ -79,8 +115,6 @@ if (isset($_SESSION['professor_code'])) {
                         </ul>
                     </div>
                 <?php } ?>
-
-                    <a class="w3-button w3-teal w3-padding w3-round-large" href="professor_home.php"><i class="fa fa-check"></i>Trở về</a>
 
             </div>
 
