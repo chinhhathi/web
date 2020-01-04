@@ -35,7 +35,7 @@
                             <p><i class="fa fa-fw fa-check"></i> Trạng thái: Còn hiệu lực</p>
                             <?php echo ""?>
                             <a class="w3-button w3-teal w3-padding-large w3-round-large" href="src_1003V_sql.php?id=<?php echo $row['id'] ?>"><i class="fa fa-check"></i>Xem chi tiết</a>
-                            <a class="w3-button w3-teal w3-padding-large w3-round-large" href="src_1003S_sql.php?id=<?php echo $row['id'] ?>"><i class="fa fa-check"></i>Xem phân công</a>
+                            <a class="w3-button w3-teal w3-padding-large w3-round-large" href="src_1003S.php?id=<?php echo $row['id'] ?>"><i class="fa fa-check"></i>Xem phân công</a>
                     </div>
                 </div>
             <?php } ?>
